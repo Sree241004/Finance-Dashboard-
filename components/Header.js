@@ -1,9 +1,10 @@
 "use client";
 import { useState, useRef, useEffect } from 'react';
 import { Menu, ChevronDown, User, ShieldAlert } from 'lucide-react';
+import { useAppContext } from '@/context/AppContext';
 
 export default function Header({ onMenuClick }) {
-  const [role, setRole] = useState('Viewer');
+  const { role, setRole } = useAppContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 

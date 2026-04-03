@@ -54,14 +54,17 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
+                  "flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all relative overflow-hidden group",
                   isActive 
-                    ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50" 
+                    ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50 font-semibold shadow-sm" 
                     : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-zinc-50"
                 )}
                 onClick={() => setIsOpen(false)}
               >
-                <Icon size={18} />
+                {isActive && (
+                  <span className="absolute left-0 top-0 bottom-0 w-1 bg-zinc-900 dark:bg-zinc-100 rounded-r-md animate-in slide-in-from-left duration-200" />
+                )}
+                <Icon size={18} className={cn("transition-transform group-hover:scale-110 duration-200", isActive ? "text-zinc-900 dark:text-zinc-100" : "text-zinc-500 dark:text-zinc-400")} />
                 {item.name}
               </Link>
             );
